@@ -1,17 +1,28 @@
 <?php
 
-namespace App\Models;  // Debe ser App\Models
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Prospecto extends Model
 {
-    protected $table = 'prospectos'; // Nombre de tu tabla en la base de datos
-    
+    use HasFactory;
+
+    protected $table = 'prospectos';
+    protected $primaryKey = 'id_prospecto';
+    public $timestamps = false;
+
     protected $fillable = [
-        // Tus campos aquí
-        '',
-        '',
-        
+        'id_solicitudes',
+        'fecha_aceptacion',
+        'estado',
+        'fecha_inicio_proceso'
     ];
+
+ 
+    public function solicitud()
+{
+    return $this->belongsTo(Solicitud::class, 'id_solicitudes', 'id_solicitudes');
+}
 }
