@@ -57,9 +57,7 @@ class SolicitudController extends Controller
             ->with('success', 'Seguimiento actualizado correctamente.');
     }
 
-    /**
-     * Actualizar el status: seguir, pendiente o eliminar
-     */
+   
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
@@ -75,7 +73,7 @@ class SolicitudController extends Controller
                 ->with('success', 'Solicitud eliminada correctamente.');
         }
 
-        // Ahora sí puedes usar DB::transaction sin errores
+      
         DB::transaction(function () use ($sol, $request) {
             $sol->update(['status' => $request->status]);
 
